@@ -1,0 +1,21 @@
+<span ></span>
+<mat-toolbar *ngIf="isQuestionFound" color="primary" class="example-margin">
+  <span>Question: {{ ' ' + question }}</span>
+  <span class="example-spacer"></span>
+  <div class="btn-section" *ngIf="isLoggedIn">
+    <button (click)="onReplyClick()" mat-raised-button color="primary" class="ask-question" type="submit">Reply</button>
+  </div>
+</mat-toolbar>
+<mat-toolbar *ngIf="!isQuestionFound" color="primary" class="example-margin">
+  <span>No question found!</span>
+</mat-toolbar>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let answer of answers; index as i;" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ '> ' + answer.substring(0,50) + ' . . . ' }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{ answer }}</p>
+  </mat-expansion-panel>
+</mat-accordion>

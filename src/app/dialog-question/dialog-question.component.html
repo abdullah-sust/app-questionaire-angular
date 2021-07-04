@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Ask Question </h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Write your question</mat-label>
+    <input matInput [(ngModel)]="data.newQuestion">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()" cdkFocusInitial [disabled]="data.newQuestion == '' ">Save</button>
+</div>
