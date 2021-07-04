@@ -1,0 +1,44 @@
+<div class="mat-elevation-z8">
+  <div class="btn-section">
+    <button (click)="onAskClick()" mat-raised-button color="primary" class="ask-question" type="submit">Ask Question</button>
+  </div>
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Question Column -->
+    <ng-container matColumnDef="question">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Question</th>
+      <td mat-cell *matCellDef="let row">{{row.question}}</td>
+    </ng-container>
+    <!-- Count Column -->
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of reply</th>
+      <td mat-cell *matCellDef="let row">{{row.answer.length}}</td>
+    </ng-container>
+
+    <!-- View Column -->
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Answer</th>
+      <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary" type="submit" (click)="onViewClicked(row.id)">View</button></td>
+    </ng-container>
+    <!-- Reply Column -->
+    <ng-container matColumnDef="reply" *ngIf="isUserLoggedIn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary" type="submit" (click)="onReplyClicked(row.id)" >Reply</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data?.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>
